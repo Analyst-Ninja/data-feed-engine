@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 
 from pyspark.sql.dataframe import DataFrame
+from pyspark.sql import SparkSession
 
 
 class BaseDatasource(ABC):
-    def __init__(self):
-        pass
+    def __init__(self, spark: SparkSession):
+        self.spark = spark
 
     @abstractmethod
     def read(self) -> DataFrame:
@@ -19,8 +20,7 @@ class BaseDatasource(ABC):
     def write(self, df: DataFrame) -> None:
         pass
 
-    @abstractmethod
     def run(self) -> None:
-        df = self.read()
-        df_transformed = df.transform()
-        self.write(df=df_transformed)
+        self.df = self.read()
+        self.df_transformed = self.transform(self.df)
+        self.write(df=self.df_transformed)

@@ -192,3 +192,11 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Ignore notebook sections
+notebooks/
+notebooks/*
+
+# Ignore data folder
+data/
+data/*
