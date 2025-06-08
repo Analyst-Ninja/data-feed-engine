@@ -1,0 +1,19 @@
+[project]
+name = "data-feed-engine"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Rohit Kumar", email = "r.kumar01@hotmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "black>=25.1.0",
+    "isort>=6.0.1",
+    "pyspark>=4.0.0",
+    "pytest>=8.4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
