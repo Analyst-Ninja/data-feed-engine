@@ -9,7 +9,7 @@ class BaseDatasource(ABC):
         self.spark = spark
 
     @abstractmethod
-    def read(self) -> DataFrame:
+    def read_jdbc(self) -> DataFrame:
         pass
 
     @abstractmethod
@@ -21,6 +21,6 @@ class BaseDatasource(ABC):
         pass
 
     def run(self) -> None:
-        self.df = self.read()
+        self.df = self.read_jdbc()
         self.df_transformed = self.transform(self.df)
         self.write(df=self.df_transformed)

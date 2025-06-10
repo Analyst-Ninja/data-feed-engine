@@ -13,8 +13,10 @@ dependencies = [
     "isort>=6.0.1",
     "pandas>=2.3.0",
     "pyarrow>=20.0.0",
+    "pydantic>=2.11.5",
     "pyspark==3.5.5",
     "pytest>=8.4.0",
+    "python-dotenv>=1.1.0",
 ]
 
 [build-system]

@@ -1,5 +1,7 @@
 from pyspark.sql import SparkSession
 from data_feed_engine.db_feed import DBFeed
+import json
+from utils.config import RedditPostsConfig
 
 if __name__ == "__main__":
     spark = (
@@ -8,16 +10,18 @@ if __name__ == "__main__":
         .getOrCreate()
     )
 
-    config = {
-        "url": "jdbc:mysql://localhost:3306/reddit_db",
-        "user": "root",
-        "password": "1234",
-        "dbtable": "r_posts",
-        "driver": "com.mysql.cj.jdbc.Driver",  # MySQL driver
-        "output_path": "data/output/r_posts",
-    }
+    with open(
+        "/media/de-ninja/codebase/Projects/14_data-feed-engine/data-feed-engine/data_pipeline_config/reddit_posts_config.json",
+        "r",
+    ) as file:
+        config = json.load(file)
 
-    feed = DBFeed(spark=spark, config=config)
+    config = RedditPostsConfig(**config)
+
+    read_config = config.spark_read_config
+    write_config = config.spark_write_config
+
+    feed = DBFeed(spark=spark, read_config=read_config, write_config=write_config)
     feed.run()
 
     spark.stop()
