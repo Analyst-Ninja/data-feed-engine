@@ -1,9 +1,11 @@
-from data_feed_engine.base_datasource import BaseDatasource
+import os
+from typing import Dict
+
+from dotenv import load_dotenv
 from pyspark.sql import SparkSession
 from pyspark.sql.dataframe import DataFrame
-from typing import Dict
-from dotenv import load_dotenv
-import os
+
+from data_feed_engine.base_datasource import BaseDatasource
 from utils.data_schema import RedditPosts
 
 load_dotenv(

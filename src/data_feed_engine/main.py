@@ -1,6 +1,8 @@
-from pyspark.sql import SparkSession
-from data_feed_engine.db_feed import DBFeed
 import json
+
+from pyspark.sql import SparkSession
+
+from data_feed_engine.db_feed import DBFeed
 from utils.config import RedditPostsConfig
 
 if __name__ == "__main__":
