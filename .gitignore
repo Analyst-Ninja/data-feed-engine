@@ -196,3 +196,7 @@ cython_debug/
 # Ignore data folder
 data/
 data/*
+
+# Ignore .vscode and launch.json
+.vscode*
+.vscode/

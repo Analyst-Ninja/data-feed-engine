@@ -4,6 +4,7 @@ from pyspark.sql.dataframe import DataFrame
 from typing import Dict
 from dotenv import load_dotenv
 import os
+from utils.data_schema import RedditPosts
 
 load_dotenv(
     "/media/de-ninja/codebase/Projects/14_data-feed-engine/data-feed-engine/.env"
@@ -32,7 +33,8 @@ class DBFeed(BaseDatasource):
         )
 
     def transform(self, df: DataFrame) -> DataFrame:
-        # No Transformation
+        # Transformation - Rename the id -> post_id
+        df = df.withColumnRenamed(RedditPosts.ID, "post_id")
         return df
 
     def write(self, df: DataFrame) -> None:
