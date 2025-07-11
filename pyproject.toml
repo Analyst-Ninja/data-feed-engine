@@ -9,9 +9,15 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "black>=25.1.0",
+    "fastparquet>=2024.11.0",
     "isort>=6.0.1",
-    "pyspark>=4.0.0",
+    "jupyter>=1.1.1",
+    "pandas>=2.3.0",
+    "pyarrow>=20.0.0",
+    "pydantic>=2.11.5",
+    "pyspark==3.5.5",
     "pytest>=8.4.0",
+    "python-dotenv>=1.1.0",
 ]
 
 [build-system]
