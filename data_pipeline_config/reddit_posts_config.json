@@ -1,11 +1,26 @@
 {
-    "spark_read_config" : {
-        "url" : "jdbc:mysql://localhost:3306/reddit_db",
-        "dbtable" : "r_posts",
-        "driver" : "com.mysql.cj.jdbc.Driver"
+    "feed_name": "reddit_feed",
+    "feed_type": "jdbc",
+    "input_datasource" : {
+        "name": "reddit_posts",
+        "connection_type": "jbdc",
+        "processing_engine": "python",
+        "database": "reddit_db",
+        "database_type": "mysql",
+        "username": "MYSQL_USER",
+        "password": "MYSQL_PASSWORD",
+        "host": "MYSQL_HOST",
+        "port": "MYSQL_PORT",
+        "table_name": "r_posts",
+        "sql_file": "r_posts.sql"
     },
-    "spark_write_config" : {
-        "write_mode" : "overwrite",
-        "output_path": "data/output/r_posts"
+    "output_datasource": {
+        "name": "processed_reddit_posts",
+        "connection_type": "s3",
+        "bucket_name": "data_feed_engine",
+        "prefix": "/processed/reddit_posts"
+    },
+    "processing_configs": {
+        "filters": ["data"]
     }
 }
