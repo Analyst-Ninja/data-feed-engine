@@ -17,8 +17,8 @@
     "output_datasource": {
         "name": "processed_reddit_posts",
         "connection_type": "s3",
-        "bucket_name": "data_feed_engine",
-        "prefix": "/processed/reddit_posts"
+        "bucket": "891377267912-ingestion-data",
+        "prefix": "processed/reddit_posts"
     },
     "processing_configs": {
         "filters": ["data"]
