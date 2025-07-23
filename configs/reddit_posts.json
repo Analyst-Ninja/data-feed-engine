@@ -3,7 +3,7 @@
     "feed_type": "jdbc",
     "input_datasource" : {
         "name": "reddit_posts",
-        "connection_type": "jbdc",
+        "type": "jdbc",
         "processing_engine": "python",
         "database": "reddit_db",
         "database_type": "mysql",
@@ -12,13 +12,14 @@
         "host": "MYSQL_HOST",
         "port": "MYSQL_PORT",
         "table_name": "r_posts",
-        "sql_file": "r_posts.sql"
+        "sql_file": "r_posts"
     },
     "output_datasource": {
         "name": "processed_reddit_posts",
-        "connection_type": "s3",
+        "type": "s3",
         "bucket": "891377267912-ingestion-data",
-        "prefix": "processed/reddit_posts"
+        "prefix": "processed/reddit_posts",
+        "format": "parquet"
     },
     "processing_configs": {
         "filters": ["data"]

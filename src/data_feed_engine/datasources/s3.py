@@ -1,14 +1,13 @@
 import json
-from pprint import pprint
 from data_feed_engine.datasources.base import BaseDatasource
-from data_feed_engine.datasources.jdbc import JDBCDatasource
 from typing import Union
 from pyspark.sql import DataFrame
 import pandas as pd
 import boto3
-from datetime import datetime
+from data_feed_engine.factory.registry import register_datasource
 
 
+@register_datasource("s3")
 class S3Datasource(BaseDatasource):
     def __init__(self, config):
         self.config = config
@@ -30,7 +29,7 @@ class S3Datasource(BaseDatasource):
     def fetch_with_spark(self):
         pass
 
-    def get_data(self):
+    def get_data(self, run_date: str, incremental: bool = False):
         if self.validate_connection():
             self.connect()
             return self.fetch_with_python()
@@ -39,14 +38,15 @@ class S3Datasource(BaseDatasource):
         objects = self.s3_client.list_objects_v2(Bucket=self.bucket)["Contents"]
         return sorted(objects, key=lambda x: x["LastModified"], reverse=True)[0]["Key"]
 
-    def put_data(self, df: Union[pd.DataFrame, DataFrame]):
+    def put_data(
+        self, df: Union[pd.DataFrame, DataFrame], run_date: str, execution_id: str
+    ):
         if self.validate_connection():
-            now = datetime.now()
-            output_path = "s3://{0}/{1}_{2}".format(
-                self.config["bucket"],
-                self.config["prefix"],
-                now.strftime("%Y%m%d_%H%M%S") + f"{now.microsecond:06d}",
+            print("INNNNN")
+            output_path = "s3://{0}/{1}/date={2}/execution_id={3}".format(
+                self.config["bucket"], self.config["prefix"], run_date, execution_id
             )
+            print(output_path)
             if isinstance(df, pd.DataFrame):
                 df.to_parquet(output_path)
             elif isinstance(df, DataFrame):
