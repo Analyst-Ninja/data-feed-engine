@@ -192,3 +192,11 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Ignore data folder
+data/
+data/*
+
+# Ignore .vscode and launch.json
+.vscode*
+.vscode/
