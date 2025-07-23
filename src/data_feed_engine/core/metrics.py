@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from typing import Any, Optional, Dict
 from datetime import datetime
+from typing import Any, Dict, Optional
 
 
 @dataclass
@@ -25,9 +25,11 @@ class ExecutionMetrics:
             "execution_id": self.execution_id,
             "start_time": self.start_time.isoformat(),
             "end_time": self.end_time.isoformat(),
-            "duration_seconds": (self.end_time - self.start_time).total_seconds()
-            if self.end_time
-            else None,
+            "duration_seconds": (
+                (self.end_time - self.start_time).total_seconds()
+                if self.end_time
+                else None
+            ),
             "input_row_count": self.input_row_count,
             "output_row_count": self.output_row_count,
             "processing_engine": self.processing_engine,

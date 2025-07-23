@@ -1,10 +1,12 @@
 import json
+import os
+
+import pandas as pd
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+
 from data_feed_engine.datasources.base import BaseDatasource
 from data_feed_engine.factory.registry import register_datasource
-from sqlalchemy import create_engine, text
-import os
-from dotenv import load_dotenv
-import pandas as pd
 
 load_dotenv()
 

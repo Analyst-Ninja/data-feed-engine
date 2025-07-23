@@ -1,13 +1,13 @@
-from typing import TYPE_CHECKING, Dict
-from .registry import DATASOURCE_REGISTRY, FEED_REGISTRY
-
 import logging
+from typing import TYPE_CHECKING, Dict
+
+from .registry import DATASOURCE_REGISTRY, FEED_REGISTRY
 
 logging.basicConfig(level=logging.INFO)
 
 if not TYPE_CHECKING:
-    from data_feed_engine.feeds.base import BaseFeed
     from data_feed_engine.datasources.base import BaseDatasource
+    from data_feed_engine.feeds.base import BaseFeed
 
 
 def create_datasource(config: Dict) -> BaseDatasource:

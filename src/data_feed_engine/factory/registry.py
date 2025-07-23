@@ -1,7 +1,7 @@
-from typing import Dict, Type, Callable
+from typing import Callable, Dict, Type
 
-from data_feed_engine.feeds.base import BaseFeed
 from data_feed_engine.datasources.base import BaseDatasource
+from data_feed_engine.feeds.base import BaseFeed
 
 DATASOURCE_REGISTRY: Dict[str, Type[BaseDatasource]] = {}
 FEED_REGISTRY: Dict[str, Type[BaseFeed]] = {}

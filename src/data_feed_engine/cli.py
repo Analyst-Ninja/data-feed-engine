@@ -1,7 +1,8 @@
 import argparse
-from datetime import datetime
-from data_feed_engine.runner import run_feed_from_config
 import logging
+from datetime import datetime
+
+from data_feed_engine.runner import run_feed_from_config
 
 
 def main():

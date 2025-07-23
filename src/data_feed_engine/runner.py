@@ -1,9 +1,9 @@
 import json
 import logging
-from data_feed_engine.factory import factory
 
+from data_feed_engine.datasources import jdbc, s3
+from data_feed_engine.factory import factory
 from data_feed_engine.feeds import reddit_posts
-from data_feed_engine.datasources import s3, jdbc
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"

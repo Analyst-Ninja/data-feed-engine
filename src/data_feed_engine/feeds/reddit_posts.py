@@ -1,5 +1,5 @@
-from data_feed_engine.feeds.base import BaseFeed
 from data_feed_engine.factory.registry import register_feed
+from data_feed_engine.feeds.base import BaseFeed
 
 
 @register_feed("jdbc")
